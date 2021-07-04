@@ -1,17 +1,17 @@
 .container-wrapper{
     text-align: center;
-    height: 100vh;
     background-color: rgb(24, 24, 24);
     position: relative;
+    display:list-item;
+    height: 100vh;
 }
 
 .form-container {
-    /* position: relative;
+    position: relative;
     display: flex;
-    grid-template-columns: 1fr 1fr;
-    width: 1000px;
-    height: 600px;  */
-   
+    margin: auto;
+    width: 100%;
+    background-color: rgb(24, 24, 24);
   }
 
   .form-content {
@@ -19,6 +19,7 @@
       padding: 50px 0;
       left: 50%;
   }
+
 .close-btn {
 position: absolute;
 top: 2%;
@@ -37,20 +38,17 @@ color: #fff;
 }
 
 .form {
-position: absolute;
 box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
 background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
 border-radius: 10px;
-top: 50%;
-left: 50%;
-
-transform: translate(-50%, -50%);
 width: 500px;
-height: 500px;
+margin: auto;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+padding: 10px;
+
 }
 
 .form h1 {
@@ -140,6 +138,13 @@ font-weight: 600;
     color: White;
     font-weight: bold;
     font-size: xx-large;
-    /* margin-bottom: 20px; */
+    text-align: center;
     font-family: Roboto;
+}
+
+.youtubeLogo {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 5px;
+    margin-right: 10px;
 }

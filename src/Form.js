@@ -10,6 +10,10 @@ const Form = () => {
 
     return(
         <div className='container-wrapper'>
+            <div className="loginTitle">
+                <img src='img/Youtube.png' alt='YouTube-Logo' className='youtubeLogo'/>
+                        Youtube Custom Playlists
+                        </div>
             <div className='form-container'>
                 {!isSubmitted ? <FormSignup submitForm = {submitForm}/> : <FormSuccess/>}
             </div>
