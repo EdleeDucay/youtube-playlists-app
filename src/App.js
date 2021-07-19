@@ -13,7 +13,7 @@ import {
 import LogInPage from './LogInPage';
 import HomePage from './HomePage';
 import Form from './Form';
-
+import SignUp from './FormSignup'
 firebase.initializeApp({
   apiKey: "AIzaSyAV40zQ0xsYXsloi1BGVfzXfB9oSv6mbds",
     authDomain: "playlists-app-62f6e.firebaseapp.com",

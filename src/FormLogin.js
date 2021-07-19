@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
-import { AccountContext } from './accountContext'
+import useForm from './useForm'
+import validate from './validateInfo'
 import './Form.css'
 
 const FormLogin = ({submitForm}) => {
-    const {switchToSignup} = useContext(AccountContext)
+    const {handleChange, values, handleSubmit, errors} = useForm(submitForm,validate);
+
 
     return(
         <div className='container'>
@@ -46,7 +48,7 @@ const FormLogin = ({submitForm}) => {
                         Sign up
                     </button>
                     <span className="form-input-login">
-                        Already have an account? Login <a href="#" onClick={switchToSignup}>here</a>
+                        Already have an account? Login <a href="#">here</a>
                     </span>
                 </form>
             </div>
