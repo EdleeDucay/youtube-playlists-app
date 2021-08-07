@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react'
-import '../Form.css'
+import '../styles/Form.css'
 import { useAuth } from '../contexts/AuthContext';
 import {Alert} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 const FormSignup = () => {
     const usernameRef = useRef()
@@ -12,17 +12,23 @@ const FormSignup = () => {
     const {signup, currentUser} = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const history = useHistory()
 
     async function handleSubmit(e) {
         e.preventDefault()
 
+        
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return setError('Passwords do not match')
+        }
+        if (passwordRef.current.value.length < 6) {
+            return setError('Password must be longer than 6 characters')
         }
         try {
             setError('')
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value)
+            history.push("/")
         } catch {
             setError('Failed to create an account')
         }

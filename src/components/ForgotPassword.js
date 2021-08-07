@@ -2,27 +2,27 @@ import React, { useState, useRef } from 'react'
 import '../styles/Form.css'
 import { useAuth } from '../contexts/AuthContext';
 import {Alert} from 'react-bootstrap'
-import {Link, useHistory} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
-const FormLogin = () => {
+const ForgotPassword = () => {
     const usernameRef = useRef()
     const emailRef = useRef()
-    const passwordRef = useRef()
-    const {login} = useAuth()
+    const {resetPassword} = useAuth()
     const [error, setError] = useState('')
+    const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
-    const history = useHistory()
 
     async function handleSubmit(e) {
         e.preventDefault()
 
         try {
             setError('')
+            setMessage('')
             setLoading(true)
-            await login(emailRef.current.value, passwordRef.current.value)
-            history.push("/")
+            await resetPassword(emailRef.current.value)
+            setMessage("An email has been sent")
         } catch {
-            setError('Failed to log in')
+            setError('Failed to reset password')
         }
         setLoading(false)
     }
@@ -39,10 +39,10 @@ const FormLogin = () => {
             
             <div className="form-content">
                 <form className="form" onSubmit={handleSubmit}>
-                    <h1>Login to your account</h1>
+                    <h1>Password Reset</h1>
                     <div className="form-inputs">
                     {error && <Alert className="w-100 h-50" variant="danger">{error}</Alert>}
-
+                    {message && <Alert variant='success'>{message}</Alert>}
                         <label htmlFor='email' className='form-label'>
                             Email
                         </label>
@@ -56,27 +56,14 @@ const FormLogin = () => {
                             required
                             />
                     </div>
-                    <div className="form-inputs">
-                        <label htmlFor='password' className='form-label'>
-                            Password
-                        </label>
-                        <input 
-                            id='password'
-                            type='password' 
-                            name='password' 
-                            className='form-input'
-                            placeholder='Enter your password'
-                            ref={passwordRef}
-                            required
-                            />
-                    </div>
+                    
                     
                     <button disabled={loading} className="form-input-btn"
                     type='submit'>
-                        Login
+                        Reset Password
                     </button>
                     <div className="form-input-login">
-                        <Link to="/forgot-password">Forgot Password?</Link>
+                        <Link to="/login">Login</Link>
                     </div>
                 </form>
                 <span className="form-input-login">
@@ -92,4 +79,4 @@ const FormLogin = () => {
     )
 }
 
-export default FormLogin
+export default ForgotPassword
