@@ -1,0 +1,59 @@
+.homeBrand{
+    color: White;
+    font-weight: bold;
+    font-size: x-large;
+    text-align: center;
+    font-family: Roboto;
+    text-decoration: none;
+    -webkit-transition: .25s ease-in-out;
+        -moz-transition: .25s ease-in-out;
+            transition: .25s ease-in-out;
+}
+
+.homeBrand:hover{
+    color: rgb(214, 214, 214);
+    font-weight: bold;
+    font-size: x-large;
+    text-align: center;
+    font-family: Roboto;
+    text-decoration: none;
+}
+
+.youtubeLogoHome {
+    height: 35px;
+    width: 35px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    -webkit-transition: .25s ease-in-out;
+        -moz-transition: .25s ease-in-out;
+            transition: .25s ease-in-out;
+}
+.homeBrand:hover > .youtubeLogoHome{
+    opacity: 75%;
+}
+
+.homeLink {
+    color: White;
+    font-weight: bold;
+    font-size: medium;
+    font-family: Roboto;
+    text-decoration: none;
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+        transition: .25s ease-in-out;
+}
+
+.homeLink:hover{
+    color: rgb(214, 214, 214);
+}
+
+.homeEmail {
+    color: rgba(255, 255, 255, 255)!important; 
+}
+
+.homeBody {
+    background: linear-gradient(180deg, rgb(50, 50, 50) 0%, rgb(17, 17, 17) 100%);
+    color: white;
+    min-width: 100%;
+    min-height: 100vh;
+}

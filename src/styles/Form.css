@@ -107,16 +107,25 @@ outline: none;
 border: none;
 color: #fff;
 font-size: 1rem;
+-webkit-transition: .4s ease-in-out;
+        -moz-transition: .4s ease-in-out;
+            transition: .4s ease-in-out;
+
+
 }
 
 .form-input-btn:hover {
 cursor: pointer;
+-webkit-transition: .4s ease-in-out;
+        -moz-transition: .4s ease-in-out;
+            transition: .4s ease-in-out;
 background: linear-gradient(
     90deg,
     rgb(39, 143, 255) 0%,
     rgb(12, 99, 250) 100%
 );
-transition: all 0.4s ease-out;
+
+
 }
 
 .form-input-login {
