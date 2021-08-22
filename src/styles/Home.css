@@ -33,7 +33,7 @@
 }
 
 .homeLink {
-    color: White;
+    color: White !important;
     font-weight: bold;
     font-size: medium;
     font-family: Roboto;
@@ -44,7 +44,7 @@
 }
 
 .homeLink:hover{
-    color: rgb(214, 214, 214);
+    color: rgb(214, 214, 214)!important;
 }
 
 .homeEmail {
@@ -56,4 +56,17 @@
     color: white;
     min-width: 100%;
     min-height: 100vh;
+}
+
+.form-control:focus {
+    box-shadow: none;
+  }
+
+iframe {
+    min-width: 100%;
+    min-height: 75vh;
+  }
+
+.videoPlayer {
+    padding: 25px 100px 25px 100px;
 }
