@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect, componentDidMount} from 'react'
 import {Button, Alert, Navbar, Nav, Form, FormControl} from 'react-bootstrap'
 import "../styles/Home.css"
 import {useAuth} from '../contexts/AuthContext'
@@ -50,6 +50,24 @@ export default function HomePage() {
         handleSubmit(e)
         
     }
+
+    useEffect(() => {
+        setSelectedVideo(null)
+        searchRef.current.value = ""
+        const fetchData = async () => {
+            const response = await youtube.get('/search', {
+                params: {
+                    q: searchRef.current.value
+                }
+            })
+        setVideos(response.data.items)
+        console.log("RESPONSE: ",response)
+
+        }
+        fetchData()
+    }, []);
+    
+    
 
     return (
         <>

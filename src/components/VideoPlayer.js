@@ -4,7 +4,8 @@ import "../styles/Home.css"
 
 export default function VideoPlayer({selectedVideo}) {
     if (!selectedVideo) {
-        return <div>
+        return <div className="homeIntro">
+            helo
         </div>
     }
     console.log("VIDEO: ", selectedVideo)
