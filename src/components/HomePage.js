@@ -114,6 +114,7 @@ export default function HomePage() {
             <VideoPlayer selectedVideo={selectedVideo}/>
             <VideoList handleVideoSelect={handleVideoSelect} videos={videos}/>
         </div>
+        
         </>
        
     )

@@ -9,10 +9,12 @@ export default function VideoItem(props) {
             src={props.video.snippet.thumbnails.medium.url} 
             alt={props.video.snippet.description} 
             onClick={() => props.handleVideoSelect(props.video)}/>
-            <div>
+            <div className="videoItem-title">
                 {props.video.snippet.title}
             </div>
-
+            <div className="videoItem-channel">
+                Channel: {props.video.snippet.channelTitle}
+            </div>
         </div>
     )
 }

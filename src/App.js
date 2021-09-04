@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage"
 import Login from "./components/FormLogin"
 import PrivateRoute from './components/PrivateRoute';
 import ForgotPassword from './components/ForgotPassword'
+import MyPlaylists from './components/MyPlaylists'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/signup" component={Signup}/>
           <Route path="/login" component={Login}/>
           <Route path="/forgot-password" component={ForgotPassword}/>
+          <Route path="/my-playlists" component={MyPlaylists}/>
         </Switch>
       </AuthProvider>
 

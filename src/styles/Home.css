@@ -3,7 +3,7 @@
     font-weight: bold;
     font-size: x-large;
     text-align: center;
-    font-family: Roboto;
+    /* font-family: Roboto; */
     text-decoration: none;
     -webkit-transition: .25s ease-in-out;
         -moz-transition: .25s ease-in-out;
@@ -15,7 +15,7 @@
     font-weight: bold;
     font-size: x-large;
     text-align: center;
-    font-family: Roboto;
+    /* font-family: Roboto; */
     text-decoration: none;
 }
 
@@ -36,7 +36,7 @@
     color: White !important;
     font-weight: bold;
     font-size: medium;
-    font-family: Roboto;
+    /* font-family: Roboto; */
     text-decoration: none;
     -webkit-transition: .25s ease-in-out;
     -moz-transition: .25s ease-in-out;
@@ -54,8 +54,10 @@
 .homeBody {
     background: linear-gradient(180deg, rgb(50, 50, 50) 0%, rgb(17, 17, 17) 100%);
     color: white;
+    height: auto;
     min-width: 100%;
     min-height: 100vh;
+    padding-bottom: 200px;
 }
 
 .form-control:focus {
@@ -69,4 +71,17 @@ iframe {
 
 .videoPlayer {
     padding: 25px 100px 25px 100px;
+}
+
+.videoPlayer-channelTitle{
+    color: gray;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+        transition: .25s ease-in-out;
+}
+.videoPlayer-channelTitle:hover{
+    color: white;
+    
 }
