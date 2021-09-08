@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import {db} from '../apis/firebase'
 import '../styles/Form.css'
 import { useAuth } from '../contexts/AuthContext';
 import {Alert} from 'react-bootstrap'
@@ -28,6 +29,15 @@ const FormSignup = () => {
             setError('')
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value)
+            try {
+                db.collection('Users').doc(emailRef.current.value).set({
+                    email: emailRef.current.value,
+                    username: usernameRef.current.value
+                })
+            } catch {
+                setError('Failed to add to the database')
+            }
+            
             history.push("/")
         } catch {
             setError('Failed to create an account')

@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom'
 import youtube from '../apis/youtube'
 import VideoList from './VideoList'
 import VideoPlayer from './VideoPlayer'
+import {db} from '../apis/firebase'
 
 export default function HomePage() {
     const [error, setError] = useState('')
@@ -14,6 +15,7 @@ export default function HomePage() {
     const [videos, setVideos] = useState([])
     const [selectedVideo, setSelectedVideo] = useState(null)
     const searchRef = useRef()
+    const [playlists, setPlaylists] = useState([])
 
     async function handleLogout() {
         setError('')
@@ -35,8 +37,6 @@ export default function HomePage() {
             }
         })
         setVideos(response.data.items)
-        // console.log("this is resp", response)
-        // console.log("VIDEOS: ", videos)
 
     }
 
@@ -52,6 +52,7 @@ export default function HomePage() {
     }
 
     useEffect(() => {
+        // Grab youtube videos for homescreen on render
         setSelectedVideo(null)
         searchRef.current.value = ""
         const fetchData = async () => {
@@ -61,13 +62,20 @@ export default function HomePage() {
                 }
             })
         setVideos(response.data.items)
-        console.log("RESPONSE: ",response)
+        // console.log("RESPONSE: ",response)
 
         }
         fetchData()
+
+        // Grab current users playlists
+        const fetchPlaylists = async () => {
+            const snapshot = await db.collection('Users').doc(currentUser.email).collection("Playlists").get()
+            setPlaylists(snapshot.docs)
+            // console.log(snapshot.docs)
+        }
+        fetchPlaylists()
+
     }, []);
-    
-    
 
     return (
         <>
@@ -83,7 +91,7 @@ export default function HomePage() {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-                <Nav.Link to="/" className="homeLink px-3">My Playlists</Nav.Link>
+                <Nav.Link href="/my-playlists" className="homeLink px-3">My Playlists</Nav.Link>
                 <Form className="d-flex px-5" onSubmit={handleSubmit}>
                     <FormControl
                         type="search"
@@ -100,7 +108,7 @@ export default function HomePage() {
                 </Form>
             </Nav>
             
-            <Nav >
+            <Nav>
                 <Nav.Link className="px-3 homeEmail" disabled>{currentUser.email}</Nav.Link>
                 <Button variant="secondary" className="mx-3" onClick={handleLogout}>Logout</Button>
 
@@ -111,7 +119,7 @@ export default function HomePage() {
 
 
         <div className="homeBody">
-            <VideoPlayer selectedVideo={selectedVideo}/>
+            <VideoPlayer selectedVideo={selectedVideo} playlists={playlists} currentUser={currentUser.email}/>
             <VideoList handleVideoSelect={handleVideoSelect} videos={videos}/>
         </div>
         

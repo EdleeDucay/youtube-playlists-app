@@ -6,6 +6,9 @@ import { Link, useHistory } from 'react-router-dom'
 import youtube from '../apis/youtube'
 import VideoList from './VideoList'
 import VideoPlayer from './VideoPlayer'
+import ModalAddPlaylist from './modals/ModalAddPlaylist' 
+import {db} from '../apis/firebase'
+import PlaylistItem from './PlaylistItem'
 
 export default function MyPlaylists() {
     const [error, setError] = useState('')
@@ -14,6 +17,9 @@ export default function MyPlaylists() {
     const [videos, setVideos] = useState([])
     const [selectedVideo, setSelectedVideo] = useState(null)
     const searchRef = useRef()
+    const [modalShow, setModalShow] = useState(false);
+    const [playlistTitle, setPlaylistTitle] = useState('')
+    const [playlists, setPlaylists] = useState([])
 
     async function handleLogout() {
         setError('')
@@ -35,8 +41,6 @@ export default function MyPlaylists() {
             }
         })
         setVideos(response.data.items)
-        // console.log("this is resp", response)
-        // console.log("VIDEOS: ", videos)
 
     }
 
@@ -44,22 +48,37 @@ export default function MyPlaylists() {
         setSelectedVideo(video)
     }
 
-    async function handleGoToHome(e){
-        setSelectedVideo(null)
-        searchRef.current.value = ""
-        handleSubmit(e)
+    function onCreatePlaylistSubmit(e) {
+        e.preventDefault();
         
+        db.collection("Users").doc(currentUser.email).collection("Playlists").doc(playlistTitle).set({
+            'title': playlistTitle
+        })
+        setModalShow(false);
     }
 
-    
-    
+    useEffect(() => {
+        // Grab current users playlists
+        const fetchPlaylists = async () => {
+            const snapshot = await db.collection('Users').doc(currentUser.email).collection("Playlists").get()
+            console.log("SNAPSHOT: ", snapshot.docs)
+            setPlaylists(snapshot.docs)
+        }
+        fetchPlaylists()
 
+    }, []);
+
+    // Bind each playlist to a component
+    const renderedPlaylists = playlists.map((playlist) => {
+        return <PlaylistItem />
+    })
+ 
     return (
         <>
         {error && <Alert variant='danger'>{error}</Alert>}
         <Navbar expand="lg" bg="dark" variant="dark">
 
-            <Navbar.Brand className="px-3" onClick={handleGoToHome}>
+            <Navbar.Brand className="px-3">
                 <Link to="/" className="homeBrand">
                 <img src='img/Youtube.png' alt='YouTube-Logo' className='youtubeLogoHome'/>
                         Youtube Custom Playlists
@@ -94,8 +113,27 @@ export default function MyPlaylists() {
         
         </Navbar>
 
-
+       
+       
         <div className="homeBody">
+
+            <div className="text-center">
+                <Button variant="secondary" className="myplaylist-create-btn w-25 mt-3" onClick={() => setModalShow(true)}>
+                        Create a Custom Playlist
+                        </Button>
+                
+                        <ModalAddPlaylist
+                        show={modalShow}
+                        setPlaylistTitle={setPlaylistTitle}
+                        onSubmit={onCreatePlaylistSubmit}
+                        onHide={() => setModalShow(false)}/>
+            </div>
+        
+            <div className="playlists">
+                {renderedPlaylists}
+            </div>
+
+
             <VideoPlayer selectedVideo={selectedVideo}/>
             <VideoList handleVideoSelect={handleVideoSelect} videos={videos}/>
         </div>

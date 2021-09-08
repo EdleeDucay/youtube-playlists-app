@@ -85,3 +85,15 @@ iframe {
     color: white;
     
 }
+
+.videoPlayer-add {
+    float: right;
+   
+}
+
+.myplaylist-create-btn {
+    /* float: left; */
+    /* margin-left: 100px; */
+    /* margin-left: 40%; */
+    /* margin: 50px; */
+}
