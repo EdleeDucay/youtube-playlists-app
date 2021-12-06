@@ -7,7 +7,7 @@ import HomePage from "./components/HomePage"
 import Login from "./components/FormLogin"
 import PrivateRoute from './components/PrivateRoute';
 import ForgotPassword from './components/ForgotPassword'
-import MyPlaylists from './components/MyPlaylists'
+import MyPlaylists from './components/playlists/MyPlaylists'
 
 function App() {
   return (

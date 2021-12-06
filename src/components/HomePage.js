@@ -4,8 +4,8 @@ import "../styles/Home.css"
 import {useAuth} from '../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import youtube from '../apis/youtube'
-import VideoList from './VideoList'
-import VideoPlayer from './VideoPlayer'
+import VideoList from './videos/VideoList'
+import VideoPlayer from './videos/VideoPlayer'
 import {db} from '../apis/firebase'
 
 export default function HomePage() {
