@@ -9,6 +9,7 @@ import VideoPlayer from '../videos/VideoPlayer'
 import ModalAddPlaylist from '../modals/ModalAddPlaylist' 
 import {db} from '../../apis/firebase'
 import PlaylistItem from './PlaylistItem'
+import PlaylistList from './PlaylistList'
 
 export default function MyPlaylists() {
     const [error, setError] = useState('')
@@ -61,7 +62,7 @@ export default function MyPlaylists() {
         // Grab current users playlists
         const fetchPlaylists = async () => {
             const snapshot = await db.collection('Users').doc(currentUser.email).collection("Playlists").get()
-            console.log("SNAPSHOT: ", snapshot.docs)
+            console.log("SNAPSHOT: ", snapshot.data)
             setPlaylists(snapshot.docs)
         }
         fetchPlaylists()
@@ -70,7 +71,8 @@ export default function MyPlaylists() {
 
     // Bind each playlist to a component
     const renderedPlaylists = playlists.map((playlist) => {
-        return <PlaylistItem />
+        // return <PlaylistItem playlist={playlist}/>
+        return <PlaylistList videos={playlist.data()} handleVideoSelect={handleVideoSelect}/>
     })
  
     return (

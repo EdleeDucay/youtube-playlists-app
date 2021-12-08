@@ -1,7 +1,7 @@
 import React , {useState} from 'react'
-import '../styles/Playlist.css'
+import '../../styles/Playlist.css'
 import PlaylistItem from './PlaylistItem'
-import '../styles/VideoItem.css'
+import '../../styles/VideoItem.css'
 
 export default function PlaylistList({videos, handleVideoSelect}) {
     const renderedVideos = videos.map((video) => {

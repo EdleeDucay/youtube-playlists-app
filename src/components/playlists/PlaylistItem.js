@@ -6,7 +6,7 @@ export default function PlaylistItem(props) {
         <div className='mt-5'>
             <div className="playlist-item">
                 HI
-                {/* {console.log('video: ', props)} */}
+                {console.log('video: ', props.playlist.collection('Videos').get().data())}
                 {/* <img className="thumbnail"
                 src={props.video.snippet.thumbnails.medium.url} 
                 alt={props.video.snippet.description} 
